@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prithvijit Bose — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f1115;
+    --ink-2:#171a20;
+    --ink-3:#1f232b;
+    --line: rgba(232,230,225,0.12);
+    --paper:#e8e6e1;
+    --paper-dim: rgba(232,230,225,0.62);
+    --paper-faint: rgba(232,230,225,0.38);
+    --amber:#c9a15f;
+    --amber-bright:#e0bd7c;
+    --teal:#5b8c87;
+    --red:#b0625a;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Space Grotesk', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  ::selection{background:var(--amber); color:var(--ink);}
+  :focus-visible{outline:2px solid var(--amber-bright); outline-offset:3px;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(15,17,21,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:56px;}
+  .nav-brand{font-family:var(--mono); font-size:14px; color:var(--amber-bright); letter-spacing:0.02em;}
+  .nav-links{display:flex; gap:22px; font-family:var(--mono); font-size:12.5px; color:var(--paper-dim);}
+  .nav-links a{text-decoration:none; transition:color .15s ease;}
+  .nav-links a:hover{color:var(--amber-bright);}
+  .nav-links a::before{content:"./"; color:var(--paper-faint);}
+  @media (max-width:640px){ .nav-links{gap:14px;} .nav-links a{display:none;} .nav-links a:nth-child(1),.nav-links a:nth-child(4){display:inline;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 60px; border-bottom:1px solid var(--line);}
+  .prompt-line{
+    font-family:var(--mono); font-size:13px; color:var(--teal);
+    display:flex; align-items:center; gap:8px; margin-bottom:22px;
+  }
+  .prompt-line .dot{width:7px; height:7px; border-radius:50%; background:var(--teal); display:inline-block;}
+  .hero h1{
+    font-family:var(--mono); font-weight:700;
+    font-size:clamp(32px, 6vw, 56px);
+    margin:0 0 6px; letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+  .hero h1 .caret{
+    display:inline-block; width:0.55em; background:var(--amber);
+    margin-left:6px; animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{opacity:0;} }
+  .hero .role{
+    font-family:var(--mono); font-size:15px; color:var(--amber-bright); margin:0 0 22px;
+  }
+  .hero p.summary{
+    max-width:640px; color:var(--paper-dim); font-size:16.5px; margin:0 0 30px;
+  }
+  .hero .meta{
+    display:flex; flex-wrap:wrap; gap:10px 22px; font-family:var(--mono); font-size:12.5px; color:var(--paper-faint);
+  }
+  .hero .meta a{text-decoration:none; border-bottom:1px solid transparent;}
+  .hero .meta a:hover{color:var(--amber-bright); border-color:var(--amber-bright);}
+  .cta-row{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:13px; padding:11px 18px; border-radius:3px;
+    text-decoration:none; border:1px solid var(--line); transition:all .15s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:600;}
+  .btn-primary:hover{background:var(--amber-bright); border-color:var(--amber-bright);}
+  .btn-ghost{color:var(--paper-dim);}
+  .btn-ghost:hover{color:var(--paper); border-color:var(--paper-dim);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:34px;}
+  .sec-head .tag{font-family:var(--mono); font-size:12px; color:var(--teal); background:rgba(91,140,135,0.12); padding:3px 8px; border-radius:3px; border:1px solid rgba(91,140,135,0.3);}
+  .sec-head h2{font-family:var(--sans); font-size:24px; font-weight:600; margin:0; color:var(--paper);}
+
+  /* ---------- COMMIT LOG (Experience) ---------- */
+  .log{position:relative; padding-left:26px;}
+  .log::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .commit{position:relative; padding-bottom:36px;}
+  .commit:last-child{padding-bottom:0;}
+  .commit::before{
+    content:""; position:absolute; left:-26px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--amber);
+  }
+  .commit-hash{font-family:var(--mono); font-size:12px; color:var(--amber-bright); margin-bottom:4px;}
+  .commit-msg{font-family:var(--sans); font-weight:600; font-size:17px; margin:0 0 3px; color:var(--paper);}
+  .commit-org{font-family:var(--mono); font-size:12.5px; color:var(--paper-faint); margin-bottom:12px;}
+  .commit-body{margin:0; padding-left:0; list-style:none;}
+  .commit-body li{
+    font-size:14.5px; color:var(--paper-dim); margin-bottom:7px; padding-left:18px; position:relative;
+  }
+  .commit-body li::before{content:"+"; position:absolute; left:0; color:var(--teal); font-family:var(--mono); font-weight:700;}
+
+  /* ---------- PROJECTS ---------- */
+  .repo-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:680px){ .repo-grid{grid-template-columns:1fr;} }
+  .repo-card{
+    border:1px solid var(--line); border-radius:6px; padding:22px; background:var(--ink-2);
+    transition:border-color .18s ease, transform .18s ease;
+  }
+  .repo-card:hover{border-color:var(--amber); transform:translateY(-2px);}
+  .repo-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .repo-name{font-family:var(--mono); font-weight:600; font-size:15.5px; color:var(--amber-bright); text-decoration:none;}
+  .repo-name:hover{text-decoration:underline;}
+  .repo-icon{color:var(--paper-faint);}
+  .repo-desc{font-size:14px; color:var(--paper-dim); margin:0 0 14px; min-height:42px;}
+  .repo-points{margin:0; padding:0; list-style:none;}
+  .repo-points li{font-size:13px; color:var(--paper-dim); margin-bottom:6px; padding-left:16px; position:relative;}
+  .repo-points li::before{content:"›"; position:absolute; left:0; color:var(--teal);}
+
+  /* ---------- SKILLS / LANGUAGE BAR ---------- */
+  .langbar{
+    display:flex; height:10px; border-radius:6px; overflow:hidden; margin-bottom:16px;
+    border:1px solid var(--line);
+  }
+  .langbar span{height:100%;}
+  .lang-legend{display:flex; flex-wrap:wrap; gap:18px; margin-bottom:36px; font-family:var(--mono); font-size:12.5px; color:var(--paper-dim);}
+  .lang-legend .swatch{width:9px; height:9px; border-radius:50%; display:inline-block; margin-right:6px;}
+  .skill-cols{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  @media (max-width:680px){ .skill-cols{grid-template-columns:1fr 1fr;} }
+  .skill-col h3{font-family:var(--mono); font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); margin:0 0 12px;}
+  .skill-col ul{list-style:none; margin:0; padding:0;}
+  .skill-col li{font-size:14px; color:var(--paper); margin-bottom:8px;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card{border:1px solid var(--line); border-radius:6px; padding:22px; background:var(--ink-2); display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .edu-card h3{margin:0 0 4px; font-size:17px; font-weight:600;}
+  .edu-card p{margin:0; color:var(--paper-dim); font-size:14px;}
+  .edu-date{font-family:var(--mono); font-size:12.5px; color:var(--amber-bright); white-space:nowrap;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:64px 0 48px;}
+  .contact-box{
+    border:1px solid var(--line); border-radius:8px; padding:40px 32px; text-align:center;
+    background:linear-gradient(180deg, var(--ink-2), var(--ink-3));
+  }
+  .contact-box .prompt-line{justify-content:center;}
+  .contact-box h2{font-family:var(--mono); font-size:26px; margin:0 0 14px;}
+  .contact-box p{color:var(--paper-dim); margin:0 0 26px; font-size:15px;}
+  .contact-links{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .foot-note{text-align:center; font-family:var(--mono); font-size:11.5px; color:var(--paper-faint); margin-top:40px;}
+
+  .fade-in{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .fade-in.visible{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-brand">prithvijit.dev</div>
+    <div class="nav-links">
+      <a href="#log">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="prompt-line"><span class="dot"></span> whoami</div>
+    <h1>Prithvijit Bose<span class="caret">&nbsp;</span></h1>
+    <p class="role">Developer — Full-Stack &amp; Generative AI</p>
+    <p class="summary">I build practical full-stack and AI applications with Python, TypeScript, FastAPI and Next.js — with hands-on open-source experience turning real GitHub activity into working tools.</p>
+    <div class="meta">
+      <span>Kolkata, India</span>
+      <a href="mailto:prithvijitbose5@gmail.com">prithvijitbose5@gmail.com</a>
+      <a href="tel:+916302235234">+91-6302235234</a>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/PrithvijitBose" target="_blank" rel="noopener">View GitHub →</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="log">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">git log</span><h2>Experience</h2></div>
+    <div class="log">
+
+      <div class="commit fade-in">
+        <div class="commit-hash"> Jun 2026 — Aug 2026</div>
+        <p class="commit-msg">Open Source Developer, AOSSIE</p>
+        <p class="commit-org">Social Share Button — open-source share widget · <a href="https://github.com/PrithvijitBose" target="_blank" rel="noopener" style="color:var(--amber-bright); text-decoration:none;">repo ↗</a></p>
+        <ul class="commit-body">
+          <li>Reduced the AI integration prompt by 69%, cutting unnecessary LLM token usage</li>
+          <li>Shipped UI improvements and interactive components on the landing page in Next.js</li>
+          <li>Contributed minor SEO improvements to boost product discoverability</li>
+        </ul>
+      </div>
+
+      <div class="commit fade-in">
+        <div class="commit-hash">Jun 2026 — Aug 2026</div>
+        <p class="commit-msg">Open Source Developer, AOSSIE</p>
+        <p class="commit-org">Gitcord — Discord ↔ GitHub contribution-tracking bot · <a href="https://github.com/PrithvijitBose" target="_blank" rel="noopener" style="color:var(--amber-bright); text-decoration:none;">repo ↗</a></p>
+        <ul class="commit-body">
+          <li>Added <code style="font-family:var(--mono); color:var(--amber-bright);">/who-is</code> to resolve a verified contributor's Discord ID from their GitHub username</li>
+          <li>Redesigned the <code style="font-family:var(--mono); color:var(--amber-bright);">/profile</code> command for a cleaner, more readable output</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">pinned</span><h2>Projects</h2></div>
+    <div class="repo-grid">
+
+      <div class="repo-card fade-in">
+        <div class="repo-top">
+          <a class="repo-name" href="https://github.com/PrithvijitBose" target="_blank" rel="noopener">knowledge</a>
+          <span class="repo-icon">↗</span>
+        </div>
+        <p class="repo-desc">Helps developers understand unfamiliar repositories faster by gathering code, issues, PRs, rules and history into context-aware explanations.</p>
+        <ul class="repo-points">
+          <li>Built the retrieval &amp; synthesis pipeline that turns repo evidence into engineering handoffs</li>
+          <li>Integrated GitHub Actions with a FastAPI webhook to run the bot</li>
+        </ul>
+      </div>
+
+      <div class="repo-card fade-in">
+        <div class="repo-top">
+          <a class="repo-name" href="https://github.com/PrithvijitBose" target="_blank" rel="noopener">proofly</a>
+          <span class="repo-icon">↗</span>
+        </div>
+        <p class="repo-desc">Solves the gap in traditional resumes by turning real commits, PRs and projects into evidence-backed career achievements.</p>
+        <ul class="repo-points">
+          <li>Built a GitHub-powered identity layer from repo metrics, commits and PRs</li>
+          <li>Added AI-assisted milestone generation, grounded in evidence with fallback handling</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">stats</span><h2>Skills</h2></div>
+
+    <div class="langbar">
+      <span style="width:34%; background:var(--amber);"></span>
+      <span style="width:24%; background:var(--teal);"></span>
+      <span style="width:18%; background:var(--red);"></span>
+      <span style="width:14%; background:#7d8fae;"></span>
+      <span style="width:10%; background:var(--paper-faint);"></span>
+    </div>
+    <div class="lang-legend">
+      <span><span class="swatch" style="background:var(--amber);"></span>Python</span>
+      <span><span class="swatch" style="background:var(--teal);"></span>TypeScript</span>
+      <span><span class="swatch" style="background:var(--red);"></span>Next.js</span>
+      <span><span class="swatch" style="background:#7d8fae;"></span>FastAPI</span>
+      <span><span class="swatch" style="background:var(--paper-faint);"></span>SQLite3</span>
+    </div>
+
+    <div class="skill-cols">
+      <div class="skill-col fade-in">
+        <h3>Language / Stack</h3>
+        <ul>
+          <li>TypeScript, Python</li>
+          <li>Next.js, Tailwind CSS</li>
+          <li>FastAPI</li>
+          <li>GitHub OAuth</li>
+          <li>SQLite3</li>
+          <li>Generative AI</li>
+        </ul>
+      </div>
+      <div class="skill-col fade-in">
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Problem Solver</li>
+          <li>Self-Learner</li>
+          <li>Adaptability</li>
+          <li>Ownership</li>
+        </ul>
+      </div>
+      <div class="skill-col fade-in">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">readme</span><h2>Education</h2></div>
+    <div class="edu-card fade-in">
+      <div>
+        <h3>Bachelor of Technology, Computer Science</h3>
+        <p>Elitte College of Engineering</p>
+      </div>
+      <div class="edu-date">Aug 2025 — Jul 2028</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-box fade-in">
+      <div class="prompt-line" style="color:var(--teal);"><span class="dot"></span> ./connect --with prithvijit</div>
+      <h2>Let's build something.</h2>
+      <p>Open to full-stack and AI engineering opportunities, collaborations, and interesting problems.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:prithvijitbose5@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/PrithvijitBose" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/prithvijit-bose-7984b921a" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <p class="foot-note">Build by Prithvijit Bose</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
